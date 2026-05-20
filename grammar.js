@@ -30,9 +30,29 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   rules: {
-    source_file: $ => repeat($.function_declaration),
+    source_file: $ => repeat($._item),
+
+    _item: $ => choice(
+      $.use_declaration,
+      $.function_declaration,
+    ),
+
+    // `use a::b::c;` — an optional trailing `*` is accepted by the grammar so
+    // the semantic pass can emit a precise "glob imports not supported" error
+    // rather than a parse error.
+    use_declaration: $ => seq(
+      'use',
+      field('path', $.use_path),
+      ';',
+    ),
+
+    use_path: $ => seq(
+      $.identifier,
+      repeat(seq('::', choice($.identifier, '*'))),
+    ),
 
     function_declaration: $ => seq(
+      optional('pub'),
       optional('inline'),
       'fn',
       field('name', $.identifier),
@@ -120,8 +140,16 @@ module.exports = grammar({
       $.integer_literal,
       $.boolean_literal,
       $.string_literal,
+      $.path,
       $.identifier,
     ),
+
+    // `module::item` or `module::sub::item`. A bare identifier is parsed as
+    // `identifier`, not `path`, so that local variables stay plain idents.
+    path: $ => prec.left(seq(
+      $.identifier,
+      repeat1(seq('::', $.identifier)),
+    )),
 
     binary_expression: $ => {
       const table = [
@@ -153,7 +181,7 @@ module.exports = grammar({
     )),
 
     call_expression: $ => prec(PREC.call, seq(
-      field('function', $.identifier),
+      field('function', choice($.path, $.identifier)),
       field('arguments', $.argument_list),
     )),
 

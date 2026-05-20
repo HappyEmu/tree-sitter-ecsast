@@ -36,6 +36,10 @@
           "named": true
         },
         {
+          "type": "path",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -93,6 +97,10 @@
             "named": true
           },
           {
+            "type": "path",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -138,6 +146,10 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "path",
             "named": true
           },
           {
@@ -265,6 +277,10 @@
             "named": true
           },
           {
+            "type": "path",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -337,6 +353,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "path",
+            "named": true
           }
         ]
       }
@@ -376,6 +396,10 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "path",
           "named": true
         },
         {
@@ -486,6 +510,10 @@
             "named": true
           },
           {
+            "type": "path",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -561,6 +589,10 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "path",
             "named": true
           },
           {
@@ -653,11 +685,30 @@
           "named": true
         },
         {
+          "type": "path",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
         {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -705,6 +756,10 @@
           "named": true
         },
         {
+          "type": "path",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -725,6 +780,10 @@
       "types": [
         {
           "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "use_declaration",
           "named": true
         }
       ]
@@ -801,6 +860,10 @@
             "named": true
           },
           {
+            "type": "path",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -828,6 +891,37 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "use_declaration",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "use_path",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "use_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -874,6 +968,10 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "path",
             "named": true
           },
           {
@@ -950,6 +1048,10 @@
   },
   {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": "::",
     "named": false
   },
   {
@@ -1049,6 +1151,10 @@
     "named": true
   },
   {
+    "type": "pub",
+    "named": false
+  },
+  {
     "type": "return",
     "named": false
   },
@@ -1058,6 +1164,10 @@
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "use",
     "named": false
   },
   {
